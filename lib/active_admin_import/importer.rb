@@ -117,7 +117,7 @@ module ActiveAdminImport
         # capture headers if not exist
         prepare_headers { CSV.parse(f.readline, **@csv_options).first }
         f.each_line do |line|
-          lines << line if line.present?
+          lines << line if line != ''
           if lines.size == batch_size || f.eof?
             cycle(lines)
             lines = []
